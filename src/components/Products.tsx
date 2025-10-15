@@ -4,8 +4,12 @@ import blackEyedPeasImage from "@/assets/black-eyed-peas.jpg";
 import pintoBeansImage from "@/assets/pinto-beans.jpg";
 import blackBeansImage from "@/assets/black-beans.jpg";
 import greenBeansImage from "@/assets/green-beans.jpg";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 const Products = () => {
+  const { ref: cerealsRef, isVisible: cerealsVisible } = useScrollAnimation(0.1);
+  const { ref: otherRef, isVisible: otherVisible } = useScrollAnimation(0.1);
+  
   const cereals = [
     { name: "Black Eyed Peas", image: blackEyedPeasImage },
     { name: "Butter Beans", image: null },
@@ -40,12 +44,14 @@ const Products = () => {
               <Wheat className="w-8 h-8 text-primary" />
               <h3 className="text-2xl md:text-3xl font-bold">Core Cereals</h3>
             </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            <div ref={cerealsRef} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
               {cereals.map((cereal, index) => (
                 <Card 
                   key={index} 
-                  className="overflow-hidden shadow-soft hover:shadow-card transition-smooth group"
-                  style={{ animationDelay: `${index * 0.05}s` }}
+                  className={`overflow-hidden shadow-soft hover:shadow-card transition-smooth group ${
+                    cerealsVisible ? 'animate-scale-in' : 'opacity-0'
+                  }`}
+                  style={{ animationDelay: cerealsVisible ? `${index * 0.1}s` : '0s' }}
                 >
                   {cereal.image && (
                     <div className="aspect-square overflow-hidden">
@@ -71,12 +77,14 @@ const Products = () => {
                 <Leaf className="w-8 h-8 text-secondary" />
                 <h3 className="text-2xl md:text-3xl font-bold">Additional Products</h3>
               </div>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+              <div ref={otherRef} className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
                 {otherProducts.map((product, index) => (
                   <div 
                     key={index} 
-                    className="bg-card p-4 rounded-lg shadow-soft hover:shadow-card transition-smooth"
-                    style={{ animationDelay: `${index * 0.05}s` }}
+                    className={`bg-card p-4 rounded-lg shadow-soft hover:shadow-card transition-smooth ${
+                      otherVisible ? 'animate-fade-in' : 'opacity-0'
+                    }`}
+                    style={{ animationDelay: otherVisible ? `${index * 0.1}s` : '0s' }}
                   >
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 rounded-full bg-secondary"></div>
