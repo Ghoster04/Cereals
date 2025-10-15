@@ -1,6 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero-cereals.jpg";
+// Image served from public folder
 
 const Hero = () => {
   const scrollToContact = () => {
@@ -12,7 +12,7 @@ const Hero = () => {
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        <img src={heroImage} alt="Premium quality cereals" className="w-full h-full object-cover" />
+        <img src="/hero-cereals.jpg" alt="Premium quality cereals" className="w-full h-full object-cover" />
         <div className="absolute inset-0 gradient-hero"></div>
       </div>
 
@@ -23,7 +23,7 @@ const Hero = () => {
             Premium Quality Cereals from the Heart of Africa
           </h1>
           <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
-            Unique Cereals delivers excellence in agricultural trading across Southern Africa, 
+            <span className="font-bold">UNIQUE CEREALS (PTY) LTD</span> delivers excellence in agricultural trading across Southern Africa, 
             connecting farmers with global markets since 2021.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -35,7 +35,7 @@ const Hero = () => {
               onClick={() => document.getElementById("products")?.scrollIntoView({ behavior: "smooth" })} 
               variant="outline" 
               size="lg" 
-              className="border-white text-white hover:bg-white/10 text-lg px-8 py-6"
+              className="border-white bg-white/20 text-white hover:bg-white hover:text-primary text-lg px-8 py-6 font-medium"
             >
               View Products
             </Button>

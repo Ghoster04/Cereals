@@ -19,7 +19,7 @@ const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           <div className="flex items-center gap-3 animate-fade-in">
-            <img src={logo} alt="Unique Cereals Logo" className="h-12 w-12" />
+            <img src={logo} alt="Unique Cereals Logo" className="h-10 w-14" />
             <div className="text-2xl font-bold text-gradient">UNIQUE CEREALS</div>
           </div>
 

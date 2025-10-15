@@ -41,8 +41,30 @@ const Contact = () => {
                       <Mail className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                       <div>
                         <h4 className="font-semibold mb-1">Email</h4>
-                        <a href="mailto:info@uniquecereals.com" className="text-muted-foreground hover:text-primary transition-smooth">
+                        <a 
+                          href="https://mail.google.com/mail/?view=cm&fs=1&to=info@uniquecereals.com" 
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-muted-foreground hover:text-primary transition-smooth flex items-center gap-2"
+                        >
                           info@uniquecereals.com
+                          <span className="text-sm text-primary">(Open in Gmail)</span>
+                        </a>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-4">
+                      <Phone className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                      <div>
+                        <h4 className="font-semibold mb-1">WhatsApp</h4>
+                        <a 
+                          href="https://wa.me/258879288553" 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="text-muted-foreground hover:text-primary transition-smooth flex items-center gap-2"
+                        >
+                          +258 87 928 8553
+                          <span className="text-sm text-primary">(Click to chat)</span>
                         </a>
                       </div>
                     </div>

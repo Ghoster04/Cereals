@@ -1,6 +1,6 @@
 import { CheckCircle, Globe, TrendingUp, Shield } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import warehouseImage from "@/assets/warehouse.jpg";
+// Image served from public folder
 
 const Services = () => {
   const strengths = [
@@ -12,17 +12,17 @@ const Services = () => {
     {
       icon: CheckCircle,
       title: "Quality Assurance",
-      description: "Comprehensive monitoring of the supply chain with quality checks and logistics supervision"
+      description: "Comprehensive  monitoring  of the  supply  Chain  with quality checks and supervision of logistics and loading"
     },
     {
       icon: TrendingUp,
       title: "Flexible Pricing",
-      description: "Wide range of pricing mechanisms including future contracts and options"
+      description: "A Wide  range of pricing  mechanism  including future contracts and options"
     },
     {
       icon: Shield,
       title: "Tailored Services",
-      description: "High degree of flexibility with customized services for document issuance"
+      description: "A high degree of flexibility tailored-made services for issuance of documents."
     }
   ];
 
@@ -37,15 +37,15 @@ const Services = () => {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
-            <div className="animate-scale-in">
-              <div className="rounded-2xl overflow-hidden shadow-card">
-                <img src={warehouseImage} alt="Modern warehouse facility" className="w-full h-full object-cover" />
+          <div className="grid lg:grid-cols-2 gap-12 mb-16">
+            <div className="animate-scale-in h-full">
+              <div className="rounded-2xl overflow-hidden shadow-card h-full">
+                <img src="/warehouse.jpg" alt="Modern warehouse facility" className="w-full h-full object-cover" style={{ minHeight: '100%' }} />
               </div>
             </div>
 
             <div className="animate-fade-in">
-              <div className="grid gap-6">
+              <div className="grid gap-6 h-full">
                 {strengths.map((strength, index) => (
                   <Card 
                     key={index} 
