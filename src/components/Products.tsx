@@ -1,16 +1,19 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Wheat, Leaf } from "lucide-react";
-import beansImage from "@/assets/beans-collection.jpg";
+import blackEyedPeasImage from "@/assets/black-eyed-peas.jpg";
+import pintoBeansImage from "@/assets/pinto-beans.jpg";
+import blackBeansImage from "@/assets/black-beans.jpg";
+import greenBeansImage from "@/assets/green-beans.jpg";
 
 const Products = () => {
   const cereals = [
-    "Black Eyed Peas",
-    "Butter Beans",
-    "Navy Beans",
-    "Black Turtle Beans",
-    "Soy Beans",
-    "Cajanus Cajan",
-    "Pinto Beans"
+    { name: "Black Eyed Peas", image: blackEyedPeasImage },
+    { name: "Butter Beans", image: null },
+    { name: "Navy Beans", image: null },
+    { name: "Black Turtle Beans", image: blackBeansImage },
+    { name: "Soy Beans", image: null },
+    { name: "Cajanus Cajan", image: greenBeansImage },
+    { name: "Pinto Beans", image: pintoBeansImage }
   ];
 
   const otherProducts = [
@@ -26,60 +29,61 @@ const Products = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16 animate-fade-in">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gradient">Our Premium Products</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gradient">Our Premium Products</h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               High-quality cereals and agricultural products sourced from the fertile lands of Mozambique and Southern Africa
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
-            <div className="order-2 lg:order-1 animate-slide-in-right">
-              <div className="rounded-2xl overflow-hidden shadow-card">
-                <img src={beansImage} alt="Variety of premium beans" className="w-full h-full object-cover" />
-              </div>
+          <div className="mb-12">
+            <div className="flex items-center gap-3 mb-8 justify-center">
+              <Wheat className="w-8 h-8 text-primary" />
+              <h3 className="text-2xl md:text-3xl font-bold">Core Cereals</h3>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+              {cereals.map((cereal, index) => (
+                <Card 
+                  key={index} 
+                  className="overflow-hidden shadow-soft hover:shadow-card transition-smooth group"
+                  style={{ animationDelay: `${index * 0.05}s` }}
+                >
+                  {cereal.image && (
+                    <div className="aspect-square overflow-hidden">
+                      <img 
+                        src={cereal.image} 
+                        alt={cereal.name} 
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
+                      />
+                    </div>
+                  )}
+                  <CardContent className="p-4">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-primary"></div>
+                      <span className="font-medium">{cereal.name}</span>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
 
-            <div className="order-1 lg:order-2 animate-fade-in">
-              <div className="mb-12">
-                <div className="flex items-center gap-3 mb-6">
-                  <Wheat className="w-10 h-10 text-primary" />
-                  <h3 className="text-3xl font-bold">Core Cereals</h3>
-                </div>
-                <div className="grid sm:grid-cols-2 gap-4">
-                  {cereals.map((cereal, index) => (
-                    <div 
-                      key={index} 
-                      className="bg-card p-4 rounded-lg shadow-soft hover:shadow-card transition-smooth"
-                      style={{ animationDelay: `${index * 0.05}s` }}
-                    >
-                      <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full bg-primary"></div>
-                        <span className="font-medium">{cereal}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+            <div>
+              <div className="flex items-center gap-3 mb-8 justify-center">
+                <Leaf className="w-8 h-8 text-secondary" />
+                <h3 className="text-2xl md:text-3xl font-bold">Additional Products</h3>
               </div>
-
-              <div>
-                <div className="flex items-center gap-3 mb-6">
-                  <Leaf className="w-10 h-10 text-secondary" />
-                  <h3 className="text-3xl font-bold">Additional Products</h3>
-                </div>
-                <div className="grid sm:grid-cols-2 gap-4">
-                  {otherProducts.map((product, index) => (
-                    <div 
-                      key={index} 
-                      className="bg-card p-4 rounded-lg shadow-soft hover:shadow-card transition-smooth"
-                      style={{ animationDelay: `${index * 0.05}s` }}
-                    >
-                      <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full bg-secondary"></div>
-                        <span className="font-medium">{product}</span>
-                      </div>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                {otherProducts.map((product, index) => (
+                  <div 
+                    key={index} 
+                    className="bg-card p-4 rounded-lg shadow-soft hover:shadow-card transition-smooth"
+                    style={{ animationDelay: `${index * 0.05}s` }}
+                  >
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-secondary"></div>
+                      <span className="font-medium">{product}</span>
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
