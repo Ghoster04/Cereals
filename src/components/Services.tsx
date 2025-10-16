@@ -1,28 +1,30 @@
 import { CheckCircle, Globe, TrendingUp, Shield } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { useI18n } from "@/lib/i18n";
 // Image served from public folder
 
 const Services = () => {
+  const { t } = useI18n();
   const strengths = [
     {
       icon: Globe,
-      title: "Global Supply Chain",
-      description: "Specialized and competitive supply of high-quality cereals on FOB and CIF basis"
+      title: t("services_item1_title"),
+      description: t("services_item1_desc")
     },
     {
       icon: CheckCircle,
-      title: "Quality Assurance",
-      description: "Comprehensive  monitoring  of the  supply  Chain  with quality checks and supervision of logistics and loading"
+      title: t("services_item2_title"),
+      description: t("services_item2_desc")
     },
     {
       icon: TrendingUp,
-      title: "Flexible Pricing",
-      description: "A Wide  range of pricing  mechanism  including future contracts and options"
+      title: t("services_item3_title"),
+      description: t("services_item3_desc")
     },
     {
       icon: Shield,
-      title: "Tailored Services",
-      description: "A high degree of flexibility tailored-made services for issuance of documents."
+      title: t("services_item4_title"),
+      description: t("services_item4_desc")
     }
   ];
 
@@ -31,10 +33,8 @@ const Services = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16 animate-fade-in">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gradient">Our Strengths</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Delivering excellence through reliable and customized execution
-            </p>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gradient">{t("services_strengths_title")}</h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">{t("services_strengths_desc")}</p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 mb-16">
@@ -71,24 +71,24 @@ const Services = () => {
             <Card className="shadow-card hover:shadow-soft transition-smooth text-center">
               <CardContent className="p-8">
                 <div className="text-5xl font-bold text-primary mb-2">20+</div>
-                <p className="text-lg font-semibold mb-2">International Partners</p>
-                <p className="text-muted-foreground">Operating worldwide</p>
+                <p className="text-lg font-semibold mb-2">{t("services_stat_partners_label")}</p>
+                <p className="text-muted-foreground">{t("services_stat_partners_sub")}</p>
               </CardContent>
             </Card>
 
             <Card className="shadow-card hover:shadow-soft transition-smooth text-center">
               <CardContent className="p-8">
                 <div className="text-5xl font-bold text-primary mb-2">2021</div>
-                <p className="text-lg font-semibold mb-2">Established</p>
-                <p className="text-muted-foreground">Growing stronger every year</p>
+                <p className="text-lg font-semibold mb-2">{t("services_stat_established_label")}</p>
+                <p className="text-muted-foreground">{t("services_stat_established_sub")}</p>
               </CardContent>
             </Card>
 
             <Card className="shadow-card hover:shadow-soft transition-smooth text-center">
               <CardContent className="p-8">
                 <div className="text-5xl font-bold text-primary mb-2">7+</div>
-                <p className="text-lg font-semibold mb-2">Core Products</p>
-                <p className="text-muted-foreground">Premium quality cereals</p>
+                <p className="text-lg font-semibold mb-2">{t("services_stat_products_label")}</p>
+                <p className="text-muted-foreground">{t("services_stat_products_sub")}</p>
               </CardContent>
             </Card>
           </div>

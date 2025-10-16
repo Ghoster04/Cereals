@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Wheat, Leaf } from "lucide-react";
+import { useI18n } from "@/lib/i18n";
 // Images are now served from public folder
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
@@ -7,6 +8,8 @@ const Products = () => {
   const { ref: cerealsRef, isVisible: cerealsVisible } = useScrollAnimation(0.1);
   const { ref: otherRef, isVisible: otherVisible } = useScrollAnimation(0.1);
   
+  const { t } = useI18n();
+
   const cereals = [
     { name: "Mung Beans", image: "/green-beans.jpg" },
     { name: "Light Speckled Sugar Beans ", image: "/red_speckled sugar_beans.jpeg" },
@@ -15,18 +18,24 @@ const Products = () => {
     { name: "Red Kidney Beans", image: "/red_kidney_beans.jpeg" },
     { name: "Corn Oil", image: "/corn_oil.jpeg" },
     { name: "Peanuts", image: "/nuts.jpeg" },
-    { name: "Cocoa Beans", image: "/cocoa_beans.jpeg" }
+    { name: "Cocoa Beans", image: "/cocoa_beans.jpeg" },
+    { name: "2 Mm red lentils", image: "/2 Mm red lentils.jpeg" },
+    { name: "Malaysian origin CP6 oil", image: "/Malaysian origin CP6 oil for sale.jpeg" },
+    { name: "Arabica AA grade coffee beans", image: "/Arabica AA grade coffee beans.jpeg" },
+    { name: "Cloves", image: "/Cloves.jpeg" },
+    { name: "Flax seeds", image: "/Flax seeds.jpeg" },
+    { name: "Achiote seeds", image: "/Achiote seeds.jpeg" }
   ];
 
   const otherBeans = [
     "Fava Beans",
     "Red Speckled beans",
-    "Jugo Beans",
+    "Jugo Beans also called bambara groundnuts",
     "White Beans",
     "Black Beans",
     "Coffee Beans",
     "Soya Beans",
-    "Butter Beans"
+    "Butter Beans also called Lima Beans"
   ];
 
   const otherProducts = [
@@ -51,24 +60,20 @@ const Products = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16 animate-fade-in">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gradient">CORE BUSINESS</h2>
-            <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
-              <span className="font-bold">UNIQUE CEREALS</span> core business revolves around 7 types of cereal originating from the central and northern regions 
-              of Mozambique. We also handle various other beans, seeds, oils, and vegetables, maintaining our expertise in the 
-              origination and marketing of all cereals present in the country and continent region.
-            </p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gradient">{t("products_core_title")}</h2>
+            <p className="text-xl text-muted-foreground max-w-4xl mx-auto">{t("products_core_desc")}</p>
           </div>
 
           <div className="mb-12">
             <div className="flex items-center gap-3 mb-8 justify-center">
               <Wheat className="w-8 h-8 text-primary" />
-              <h3 className="text-2xl md:text-3xl font-bold">MAIN CEREALS</h3>
+              <h3 className="text-2xl md:text-3xl font-bold">{t("products_main_title")}</h3>
               <div className="flex flex-wrap justify-center gap-4 mt-4">
                 {[
-                  "Mung Beans",
-                  "Butter Beans",
-                  "White Haricot Beans (White Pea Beans or Navy Beans)",
-                  "Red Speckled Sugar Beans = Light Speckled Kidney Beans",
+                  "Mung Beans also called green beans",
+                  "Butter Beans also called lima beans",
+                  "White Haricot Beans also called White Pea Beans or Navy Beans",
+                  "Red Speckled Sugar Beans also called Light Speckled Kidney Beans",
                   "Soya Beans",
                   "Pigeon Pea",
                   "Red Kidney Beans"
@@ -114,7 +119,7 @@ const Products = () => {
             <div className="mb-16">
               <div className="flex items-center gap-3 mb-8 justify-center">
                 <Leaf className="w-8 h-8 text-secondary" />
-                <h3 className="text-2xl md:text-3xl font-bold">Additional Beans</h3>
+                <h3 className="text-2xl md:text-3xl font-bold">{t("products_add_beans_title")}</h3>
               </div>
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {otherBeans.map((product, index) => (
@@ -136,7 +141,7 @@ const Products = () => {
             <div className="mb-16">
               <div className="flex items-center gap-3 mb-8 justify-center">
                 <Leaf className="w-8 h-8 text-secondary" />
-                <h3 className="text-2xl md:text-3xl font-bold">Additional Products</h3>
+                <h3 className="text-2xl md:text-3xl font-bold">{t("products_add_products_title")}</h3>
               </div>
               <div ref={otherRef} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {otherProducts.map((product, index) => (
@@ -159,12 +164,8 @@ const Products = () => {
 
           <Card className="shadow-card gradient-primary text-white animate-scale-in">
             <CardContent className="p-8 text-center">
-              <h4 className="text-2xl font-bold mb-4">Quality You Can Trust</h4>
-              <p className="text-lg text-white/90 leading-relaxed max-w-3xl mx-auto">
-                <span className="font-bold">UNIQUE CEREALS</span> sources all products primarily from Mozambique's central and northern regions, ensuring the highest 
-                quality standards. We provide comprehensive monitoring throughout the supply chain with quality checks 
-                and logistics supervision.
-              </p>
+              <h4 className="text-2xl font-bold mb-4">{t("products_quality_title")}</h4>
+              <p className="text-lg text-white/90 leading-relaxed max-w-3xl mx-auto">{t("products_quality_desc")}</p>
             </CardContent>
           </Card>
         </div>

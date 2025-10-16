@@ -2,6 +2,13 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
+import { localeToFlag, useI18n, type SupportedLocale } from "@/lib/i18n";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+// Using bundled SVG imports for flags to avoid dev-server fs allow issues
+import flagES from "flag-icons/flags/4x3/es.svg";
+import flagGB from "flag-icons/flags/4x3/gb.svg";
+import flagPT from "flag-icons/flags/4x3/pt.svg";
+import flagFR from "flag-icons/flags/4x3/fr.svg";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,6 +19,35 @@ const Navigation = () => {
       element.scrollIntoView({ behavior: "smooth" });
       setIsOpen(false);
     }
+  };
+
+  const { t, locale, setLocale } = useI18n();
+
+  const renderLangSwitcher = () => {
+    const locales: SupportedLocale[] = ["pt", "en", "fr", "es"]; // order per request
+    const flagByLocale: Record<SupportedLocale, string> = { en: flagGB, pt: flagPT, fr: flagFR, es: flagES };
+    const nameByLocale: Record<SupportedLocale, string> = { en: "English", pt: "Português", fr: "Français", es: "Español" };
+    return (
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <button
+            className="px-3 py-2 rounded-md border border-border bg-background/60 hover:bg-background transition-smooth text-foreground flex items-center gap-2"
+            aria-label="Language selector"
+          >
+            <img src={flagByLocale[locale]} alt={`${locale} flag`} className="h-4 w-auto rounded-sm" />
+            <span className="text-sm font-medium">{nameByLocale[locale]}</span>
+          </button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end" className="min-w-[10rem]">
+          {locales.map((loc) => (
+            <DropdownMenuItem key={loc} onClick={() => setLocale(loc)} className="flex items-center gap-2 cursor-pointer">
+              <img src={flagByLocale[loc]} alt={`${loc} flag`} className="h-4 w-auto rounded-sm" />
+              <span className="font-medium">{nameByLocale[loc]}</span>
+            </DropdownMenuItem>
+          ))}
+        </DropdownMenuContent>
+      </DropdownMenu>
+    );
   };
 
   return (
@@ -26,23 +62,24 @@ const Navigation = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8 animate-fade-in">
             <button onClick={() => scrollToSection("home")} className="text-foreground hover:text-primary transition-smooth font-medium">
-              Home
+              {t("nav_home")}
             </button>
             <button onClick={() => scrollToSection("about")} className="text-foreground hover:text-primary transition-smooth font-medium">
-              About
+              {t("nav_about")}
             </button>
             <button onClick={() => scrollToSection("products")} className="text-foreground hover:text-primary transition-smooth font-medium">
-              Products
+              {t("nav_products")}
             </button>
             <button onClick={() => scrollToSection("services")} className="text-foreground hover:text-primary transition-smooth font-medium">
-              Services
+              {t("nav_services")}
             </button>
             <button onClick={() => scrollToSection("location")} className="text-foreground hover:text-primary transition-smooth font-medium">
-              Location
+              {t("nav_location")}
             </button>
             <Button onClick={() => scrollToSection("contact")} className="gradient-primary">
-              Contact Us
+              {t("nav_contact")}
             </Button>
+            {renderLangSwitcher()}
           </div>
 
           {/* Mobile Menu Button */}
@@ -56,23 +93,24 @@ const Navigation = () => {
           <div className="md:hidden pb-4 animate-fade-in">
             <div className="flex flex-col gap-4">
               <button onClick={() => scrollToSection("home")} className="text-left text-foreground hover:text-primary transition-smooth font-medium">
-                Home
+                {t("nav_home")}
               </button>
               <button onClick={() => scrollToSection("about")} className="text-left text-foreground hover:text-primary transition-smooth font-medium">
-                About
+                {t("nav_about")}
               </button>
               <button onClick={() => scrollToSection("products")} className="text-left text-foreground hover:text-primary transition-smooth font-medium">
-                Products
+                {t("nav_products")}
               </button>
               <button onClick={() => scrollToSection("services")} className="text-left text-foreground hover:text-primary transition-smooth font-medium">
-                Services
+                {t("nav_services")}
               </button>
               <button onClick={() => scrollToSection("location")} className="text-left text-foreground hover:text-primary transition-smooth font-medium">
-                Location
+                {t("nav_location")}
               </button>
               <Button onClick={() => scrollToSection("contact")} className="gradient-primary w-full">
-                Contact Us
+                {t("nav_contact")}
               </Button>
+              <div className="pt-2">{renderLangSwitcher()}</div>
             </div>
           </div>
         )}
